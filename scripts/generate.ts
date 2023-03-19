@@ -80,7 +80,7 @@ export async function generatePackage(specification: string) {
 }
 
 async function pnpmInstall() {
-  await execa('pnpm', ['install'], {
+  await execa('pnpm', ['install', '--no-frozen-lockfile'], {
     cwd: path.join(__dirname, '..'),
   })
 }

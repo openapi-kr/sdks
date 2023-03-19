@@ -1,0 +1,29 @@
+name: package
+on:
+  repository_dispatch:
+    types:
+      - sync_specifications
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: GitHub Profile setup
+        run: |
+          git config user.name "hahnlee"
+          git config user.email "hanlee.dev@gmail.com"
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: update submodules
+        run: git submodule update --remote
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.18.2
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+      - run: pnpm install
+      - run: pnpm generate
+      - run: pnpm commit

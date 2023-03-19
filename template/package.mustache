@@ -25,10 +25,8 @@
 {{/packageAsSourceOnlyLibrary}}
   "devDependencies": {
     "typescript": "^5.0"
-  }{{#npmRepository}},{{/npmRepository}}
-{{#npmRepository}}
+  },
   "publishConfig": {
-    "registry": "{{npmRepository}}"
+    "access": "public"
   }
-{{/npmRepository}}
 }

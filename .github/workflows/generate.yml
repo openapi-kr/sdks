@@ -9,6 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          fetch-depth: 0
           submodules: true
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: GitHub Profile setup

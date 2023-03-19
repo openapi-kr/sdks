@@ -26,4 +26,4 @@ jobs:
       shell: bash
     - run: pnpm install
     - run: pnpm lerna version --conventional-graduate --yes --git-remote origin
-    - run: lerna publish from-git --yes --concurrency=2
+    - run: pnpm lerna publish from-git --yes --concurrency=2

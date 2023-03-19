@@ -16,13 +16,13 @@
 import * as runtime from '../runtime';
 import type {
   AddrLinkResponse,
-  Results,
+  AddrLinkResults,
 } from '../models';
 import {
     AddrLinkResponseFromJSON,
     AddrLinkResponseToJSON,
-    ResultsFromJSON,
-    ResultsToJSON,
+    AddrLinkResultsFromJSON,
+    AddrLinkResultsToJSON,
 } from '../models';
 
 export interface AddrLinkApiGetRequest {

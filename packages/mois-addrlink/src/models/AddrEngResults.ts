@@ -29,48 +29,50 @@ import {
 /**
  * 
  * @export
- * @interface AddrEngResponseResults
+ * @interface AddrEngResults
  */
-export interface AddrEngResponseResults {
+export interface AddrEngResults {
     /**
      * 
      * @type {Common}
-     * @memberof AddrEngResponseResults
+     * @memberof AddrEngResults
      */
-    common?: Common;
+    common: Common;
     /**
      * 
      * @type {Array<EnglishAddress>}
-     * @memberof AddrEngResponseResults
+     * @memberof AddrEngResults
      */
-    juso?: Array<EnglishAddress> | null;
+    juso: Array<EnglishAddress> | null;
 }
 
 /**
- * Check if a given object implements the AddrEngResponseResults interface.
+ * Check if a given object implements the AddrEngResults interface.
  */
-export function instanceOfAddrEngResponseResults(value: object): boolean {
+export function instanceOfAddrEngResults(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "common" in value;
+    isInstance = isInstance && "juso" in value;
 
     return isInstance;
 }
 
-export function AddrEngResponseResultsFromJSON(json: any): AddrEngResponseResults {
-    return AddrEngResponseResultsFromJSONTyped(json, false);
+export function AddrEngResultsFromJSON(json: any): AddrEngResults {
+    return AddrEngResultsFromJSONTyped(json, false);
 }
 
-export function AddrEngResponseResultsFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddrEngResponseResults {
+export function AddrEngResultsFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddrEngResults {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'common': !exists(json, 'common') ? undefined : CommonFromJSON(json['common']),
-        'juso': !exists(json, 'juso') ? undefined : (json['juso'] === null ? null : (json['juso'] as Array<any>).map(EnglishAddressFromJSON)),
+        'common': CommonFromJSON(json['common']),
+        'juso': (json['juso'] === null ? null : (json['juso'] as Array<any>).map(EnglishAddressFromJSON)),
     };
 }
 
-export function AddrEngResponseResultsToJSON(value?: AddrEngResponseResults | null): any {
+export function AddrEngResultsToJSON(value?: AddrEngResults | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -80,7 +82,7 @@ export function AddrEngResponseResultsToJSON(value?: AddrEngResponseResults | nu
     return {
         
         'common': CommonToJSON(value.common),
-        'juso': value.juso === undefined ? undefined : (value.juso === null ? null : (value.juso as Array<any>).map(EnglishAddressToJSON)),
+        'juso': (value.juso === null ? null : (value.juso as Array<any>).map(EnglishAddressToJSON)),
     };
 }
 

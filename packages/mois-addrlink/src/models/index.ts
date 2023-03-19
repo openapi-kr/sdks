@@ -1,13 +1,13 @@
 /* tslint:disable */
 /* eslint-disable */
 export * from './AddrCoordResponse';
-export * from './AddrCoordResponseResults';
+export * from './AddrCoordResults';
 export * from './AddrDetailResponse';
-export * from './AddrDetailResponseResults';
+export * from './AddrDetailResults';
 export * from './AddrEngResponse';
-export * from './AddrEngResponseResults';
+export * from './AddrEngResults';
 export * from './AddrLinkResponse';
-export * from './AddrLinkResponseResults';
+export * from './AddrLinkResults';
 export * from './Address';
 export * from './Common';
 export * from './Coord';

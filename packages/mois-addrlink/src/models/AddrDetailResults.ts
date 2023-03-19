@@ -13,43 +13,43 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { Address } from './Address';
-import {
-    AddressFromJSON,
-    AddressFromJSONTyped,
-    AddressToJSON,
-} from './Address';
 import type { Common } from './Common';
 import {
     CommonFromJSON,
     CommonFromJSONTyped,
     CommonToJSON,
 } from './Common';
+import type { DetailAddress } from './DetailAddress';
+import {
+    DetailAddressFromJSON,
+    DetailAddressFromJSONTyped,
+    DetailAddressToJSON,
+} from './DetailAddress';
 
 /**
  * 
  * @export
- * @interface AddrLinkResponseResults
+ * @interface AddrDetailResults
  */
-export interface AddrLinkResponseResults {
+export interface AddrDetailResults {
     /**
      * 
      * @type {Common}
-     * @memberof AddrLinkResponseResults
+     * @memberof AddrDetailResults
      */
     common: Common;
     /**
      * 
-     * @type {Array<Address>}
-     * @memberof AddrLinkResponseResults
+     * @type {Array<DetailAddress>}
+     * @memberof AddrDetailResults
      */
-    juso: Array<Address> | null;
+    juso: Array<DetailAddress> | null;
 }
 
 /**
- * Check if a given object implements the AddrLinkResponseResults interface.
+ * Check if a given object implements the AddrDetailResults interface.
  */
-export function instanceOfAddrLinkResponseResults(value: object): boolean {
+export function instanceOfAddrDetailResults(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "common" in value;
     isInstance = isInstance && "juso" in value;
@@ -57,22 +57,22 @@ export function instanceOfAddrLinkResponseResults(value: object): boolean {
     return isInstance;
 }
 
-export function AddrLinkResponseResultsFromJSON(json: any): AddrLinkResponseResults {
-    return AddrLinkResponseResultsFromJSONTyped(json, false);
+export function AddrDetailResultsFromJSON(json: any): AddrDetailResults {
+    return AddrDetailResultsFromJSONTyped(json, false);
 }
 
-export function AddrLinkResponseResultsFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddrLinkResponseResults {
+export function AddrDetailResultsFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddrDetailResults {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'common': CommonFromJSON(json['common']),
-        'juso': (json['juso'] === null ? null : (json['juso'] as Array<any>).map(AddressFromJSON)),
+        'juso': (json['juso'] === null ? null : (json['juso'] as Array<any>).map(DetailAddressFromJSON)),
     };
 }
 
-export function AddrLinkResponseResultsToJSON(value?: AddrLinkResponseResults | null): any {
+export function AddrDetailResultsToJSON(value?: AddrDetailResults | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -82,7 +82,7 @@ export function AddrLinkResponseResultsToJSON(value?: AddrLinkResponseResults | 
     return {
         
         'common': CommonToJSON(value.common),
-        'juso': (value.juso === null ? null : (value.juso as Array<any>).map(AddressToJSON)),
+        'juso': (value.juso === null ? null : (value.juso as Array<any>).map(DetailAddressToJSON)),
     };
 }
 

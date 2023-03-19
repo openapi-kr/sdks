@@ -16,13 +16,13 @@
 import * as runtime from '../runtime';
 import type {
   AddrCoordResponse,
-  Results,
+  AddrCoordResults,
 } from '../models';
 import {
     AddrCoordResponseFromJSON,
     AddrCoordResponseToJSON,
-    ResultsFromJSON,
-    ResultsToJSON,
+    AddrCoordResultsFromJSON,
+    AddrCoordResultsToJSON,
 } from '../models';
 
 export interface AddrCoordApiGetRequest {

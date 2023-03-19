@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { AddrEngResponseResults } from './AddrEngResponseResults';
+import type { AddrEngResults } from './AddrEngResults';
 import {
-    AddrEngResponseResultsFromJSON,
-    AddrEngResponseResultsFromJSONTyped,
-    AddrEngResponseResultsToJSON,
-} from './AddrEngResponseResults';
+    AddrEngResultsFromJSON,
+    AddrEngResultsFromJSONTyped,
+    AddrEngResultsToJSON,
+} from './AddrEngResults';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface AddrEngResponse {
     /**
      * 
-     * @type {AddrEngResponseResults}
+     * @type {AddrEngResults}
      * @memberof AddrEngResponse
      */
-    results?: AddrEngResponseResults;
+    results: AddrEngResults;
 }
 
 /**
@@ -39,6 +39,7 @@ export interface AddrEngResponse {
  */
 export function instanceOfAddrEngResponse(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "results" in value;
 
     return isInstance;
 }
@@ -53,7 +54,7 @@ export function AddrEngResponseFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'results': !exists(json, 'results') ? undefined : AddrEngResponseResultsFromJSON(json['results']),
+        'results': AddrEngResultsFromJSON(json['results']),
     };
 }
 
@@ -66,7 +67,7 @@ export function AddrEngResponseToJSON(value?: AddrEngResponse | null): any {
     }
     return {
         
-        'results': AddrEngResponseResultsToJSON(value.results),
+        'results': AddrEngResultsToJSON(value.results),
     };
 }
 

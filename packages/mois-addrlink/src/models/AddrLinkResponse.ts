@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { AddrLinkResponseResults } from './AddrLinkResponseResults';
+import type { AddrLinkResults } from './AddrLinkResults';
 import {
-    AddrLinkResponseResultsFromJSON,
-    AddrLinkResponseResultsFromJSONTyped,
-    AddrLinkResponseResultsToJSON,
-} from './AddrLinkResponseResults';
+    AddrLinkResultsFromJSON,
+    AddrLinkResultsFromJSONTyped,
+    AddrLinkResultsToJSON,
+} from './AddrLinkResults';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface AddrLinkResponse {
     /**
      * 
-     * @type {AddrLinkResponseResults}
+     * @type {AddrLinkResults}
      * @memberof AddrLinkResponse
      */
-    results?: AddrLinkResponseResults;
+    results: AddrLinkResults;
 }
 
 /**
@@ -39,6 +39,7 @@ export interface AddrLinkResponse {
  */
 export function instanceOfAddrLinkResponse(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "results" in value;
 
     return isInstance;
 }
@@ -53,7 +54,7 @@ export function AddrLinkResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'results': !exists(json, 'results') ? undefined : AddrLinkResponseResultsFromJSON(json['results']),
+        'results': AddrLinkResultsFromJSON(json['results']),
     };
 }
 
@@ -66,7 +67,7 @@ export function AddrLinkResponseToJSON(value?: AddrLinkResponse | null): any {
     }
     return {
         
-        'results': AddrLinkResponseResultsToJSON(value.results),
+        'results': AddrLinkResultsToJSON(value.results),
     };
 }
 

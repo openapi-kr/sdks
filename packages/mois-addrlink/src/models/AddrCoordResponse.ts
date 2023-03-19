@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { AddrCoordResponseResults } from './AddrCoordResponseResults';
+import type { AddrCoordResults } from './AddrCoordResults';
 import {
-    AddrCoordResponseResultsFromJSON,
-    AddrCoordResponseResultsFromJSONTyped,
-    AddrCoordResponseResultsToJSON,
-} from './AddrCoordResponseResults';
+    AddrCoordResultsFromJSON,
+    AddrCoordResultsFromJSONTyped,
+    AddrCoordResultsToJSON,
+} from './AddrCoordResults';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface AddrCoordResponse {
     /**
      * 
-     * @type {AddrCoordResponseResults}
+     * @type {AddrCoordResults}
      * @memberof AddrCoordResponse
      */
-    results?: AddrCoordResponseResults;
+    results: AddrCoordResults;
 }
 
 /**
@@ -39,6 +39,7 @@ export interface AddrCoordResponse {
  */
 export function instanceOfAddrCoordResponse(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "results" in value;
 
     return isInstance;
 }
@@ -53,7 +54,7 @@ export function AddrCoordResponseFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'results': !exists(json, 'results') ? undefined : AddrCoordResponseResultsFromJSON(json['results']),
+        'results': AddrCoordResultsFromJSON(json['results']),
     };
 }
 
@@ -66,7 +67,7 @@ export function AddrCoordResponseToJSON(value?: AddrCoordResponse | null): any {
     }
     return {
         
-        'results': AddrCoordResponseResultsToJSON(value.results),
+        'results': AddrCoordResultsToJSON(value.results),
     };
 }
 

@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { AddrDetailResponseResults } from './AddrDetailResponseResults';
+import type { AddrDetailResults } from './AddrDetailResults';
 import {
-    AddrDetailResponseResultsFromJSON,
-    AddrDetailResponseResultsFromJSONTyped,
-    AddrDetailResponseResultsToJSON,
-} from './AddrDetailResponseResults';
+    AddrDetailResultsFromJSON,
+    AddrDetailResultsFromJSONTyped,
+    AddrDetailResultsToJSON,
+} from './AddrDetailResults';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface AddrDetailResponse {
     /**
      * 
-     * @type {AddrDetailResponseResults}
+     * @type {AddrDetailResults}
      * @memberof AddrDetailResponse
      */
-    results?: AddrDetailResponseResults;
+    results: AddrDetailResults;
 }
 
 /**
@@ -39,6 +39,7 @@ export interface AddrDetailResponse {
  */
 export function instanceOfAddrDetailResponse(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "results" in value;
 
     return isInstance;
 }
@@ -53,7 +54,7 @@ export function AddrDetailResponseFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'results': !exists(json, 'results') ? undefined : AddrDetailResponseResultsFromJSON(json['results']),
+        'results': AddrDetailResultsFromJSON(json['results']),
     };
 }
 
@@ -66,7 +67,7 @@ export function AddrDetailResponseToJSON(value?: AddrDetailResponse | null): any
     }
     return {
         
-        'results': AddrDetailResponseResultsToJSON(value.results),
+        'results': AddrDetailResultsToJSON(value.results),
     };
 }
 

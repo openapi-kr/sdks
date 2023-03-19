@@ -16,13 +16,13 @@
 import * as runtime from '../runtime';
 import type {
   AddrDetailResponse,
-  Results,
+  AddrDetailResults,
 } from '../models';
 import {
     AddrDetailResponseFromJSON,
     AddrDetailResponseToJSON,
-    ResultsFromJSON,
-    ResultsToJSON,
+    AddrDetailResultsFromJSON,
+    AddrDetailResultsToJSON,
 } from '../models';
 
 export interface AddrDetailApiGetRequest {

@@ -29,48 +29,50 @@ import {
 /**
  * 
  * @export
- * @interface AddrCoordResponseResults
+ * @interface AddrCoordResults
  */
-export interface AddrCoordResponseResults {
+export interface AddrCoordResults {
     /**
      * 
      * @type {Common}
-     * @memberof AddrCoordResponseResults
+     * @memberof AddrCoordResults
      */
-    common?: Common;
+    common: Common;
     /**
      * 
      * @type {Array<Coord>}
-     * @memberof AddrCoordResponseResults
+     * @memberof AddrCoordResults
      */
-    juso?: Array<Coord> | null;
+    juso: Array<Coord> | null;
 }
 
 /**
- * Check if a given object implements the AddrCoordResponseResults interface.
+ * Check if a given object implements the AddrCoordResults interface.
  */
-export function instanceOfAddrCoordResponseResults(value: object): boolean {
+export function instanceOfAddrCoordResults(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "common" in value;
+    isInstance = isInstance && "juso" in value;
 
     return isInstance;
 }
 
-export function AddrCoordResponseResultsFromJSON(json: any): AddrCoordResponseResults {
-    return AddrCoordResponseResultsFromJSONTyped(json, false);
+export function AddrCoordResultsFromJSON(json: any): AddrCoordResults {
+    return AddrCoordResultsFromJSONTyped(json, false);
 }
 
-export function AddrCoordResponseResultsFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddrCoordResponseResults {
+export function AddrCoordResultsFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddrCoordResults {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'common': !exists(json, 'common') ? undefined : CommonFromJSON(json['common']),
-        'juso': !exists(json, 'juso') ? undefined : (json['juso'] === null ? null : (json['juso'] as Array<any>).map(CoordFromJSON)),
+        'common': CommonFromJSON(json['common']),
+        'juso': (json['juso'] === null ? null : (json['juso'] as Array<any>).map(CoordFromJSON)),
     };
 }
 
-export function AddrCoordResponseResultsToJSON(value?: AddrCoordResponseResults | null): any {
+export function AddrCoordResultsToJSON(value?: AddrCoordResults | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -80,7 +82,7 @@ export function AddrCoordResponseResultsToJSON(value?: AddrCoordResponseResults 
     return {
         
         'common': CommonToJSON(value.common),
-        'juso': value.juso === undefined ? undefined : (value.juso === null ? null : (value.juso as Array<any>).map(CoordToJSON)),
+        'juso': (value.juso === null ? null : (value.juso as Array<any>).map(CoordToJSON)),
     };
 }
 

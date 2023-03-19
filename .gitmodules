@@ -1,3 +1,4 @@
 [submodule "specifications"]
 	path = specifications
 	url = https://github.com/hahnlee/specifications.git
+	branch = main

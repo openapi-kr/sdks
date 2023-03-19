@@ -72,7 +72,7 @@ export async function generatePackage(specification: string) {
     output,
     '-t',
     path.join(__dirname, '..', 'template'),
-    `--additional-properties=npmName=@open-api-kr/${packageName}`,
+    `--additional-properties=npmName=@openapi-kr/${packageName}`,
     `--additional-properties=npmVersion=${npmVersion}`,
     '--additional-properties=supportsES6=true',
     '--additional-properties=allowUnicodeIdentifiers=true',

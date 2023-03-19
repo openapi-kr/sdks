@@ -12,7 +12,6 @@ async function commit() {
   const commitMessage = await getSpecificationsCommitMessage()
   await execa('git', ['add', '-A'])
   await execa('git', ['commit', '-m', commitMessage])
-  await execa('git', ['push', 'origin', 'main'])
 }
 
 commit()

@@ -1,4 +1,4 @@
 [submodule "specifications"]
 	path = specifications
-	url = https://github.com/hahnlee/specifications.git
+	url = https://github.com/openapi-kr/specifications.git
 	branch = main

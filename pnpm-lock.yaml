@@ -25,6 +25,12 @@ importers:
     devDependencies:
       typescript: 5.0.2
 
+  packages/mois-addrlink:
+    specifiers:
+      typescript: ^5.0
+    devDependencies:
+      typescript: 5.0.2
+
 packages:
 
   /@babel/code-frame/7.18.6:

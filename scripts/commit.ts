@@ -2,7 +2,7 @@ import execa from 'execa'
 import path from 'path'
 
 async function getSpecificationsCommitMessage() {
-  const commitMessage = await execa('git', ['log', '-1', '--pretty=%B'], {
+  const commitMessage = await execa('git', ['log', '-1', '--format=%B'], {
     cwd: path.join(__dirname, '..', 'specifications'),
   })
   return commitMessage.stdout

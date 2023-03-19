@@ -1,0 +1,22 @@
+{
+  "name": "@open-api-kr/kasi-spcde-info",
+  "version": "1.0.0-alpha.0",
+  "description": "OpenAPI client for @open-api-kr/kasi-spcde-info",
+  "author": "openapi-kr",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openapi-kr/sdks.git"
+  },
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "module": "./dist/esm/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc && tsc -p tsconfig.esm.json",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^5.0"
+  }
+}

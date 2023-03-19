@@ -7,13 +7,13 @@ jobs:
   package:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
       - name: GitHub Profile setup
         run: |
           git config user.name "hahnlee"
           git config user.email "hanlee.dev@gmail.com"
-      - uses: actions/checkout@v3
-        with:
-          submodules: true
       - name: update submodules
         run: git submodule update --remote
       - uses: pnpm/action-setup@v2

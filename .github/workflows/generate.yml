@@ -1,4 +1,4 @@
-name: package
+name: generate
 on:
   repository_dispatch:
     types:
@@ -34,4 +34,4 @@ jobs:
       - run: pnpm install
       - run: pnpm generate
       - run: pnpm commit
-      - run: git push https://${{ secrets.BOT_TOKEN }}@github.com/openapi-kr/sdks.git HEAD:main
+      - run: git push

@@ -3,6 +3,11 @@ on:
   push:
     branches:
       - main
+  workflow_run:
+    workflows:
+      - generate
+    types:
+      - completed
 concurrency:
   group: publish
   cancel-in-progress: false
@@ -12,25 +17,25 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    - uses: pnpm/action-setup@v2
-      with:
-        version: 7.18.2
-    - name: Setup node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
-        cache: pnpm
-    - name: GitHub Profile setup
-      run: |
-        git config user.name "hahnlee"
-        git config user.email "hanlee.dev@gmail.com"
-      shell: bash
-    - name: NPM Token setup
-      run: echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} | tee .npmrc $HOME/.npmrc > /dev/null
-      shell: bash
-    - run: pnpm install
-    - run: pnpm lerna version --conventional-graduate --yes --git-remote origin
-    - run: pnpm lerna publish from-git --yes --concurrency=2
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.18.2
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+      - name: GitHub Profile setup
+        run: |
+          git config user.name "hahnlee"
+          git config user.email "hanlee.dev@gmail.com"
+        shell: bash
+      - name: NPM Token setup
+        run: echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} | tee .npmrc $HOME/.npmrc > /dev/null
+        shell: bash
+      - run: pnpm install
+      - run: pnpm lerna version --conventional-graduate --yes --git-remote origin
+      - run: pnpm lerna publish from-git --yes --concurrency=2

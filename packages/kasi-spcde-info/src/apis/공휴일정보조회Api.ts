@@ -26,10 +26,25 @@ import {
 } from '../models';
 
 export interface GetRestDeInfoRequest {
+    /**
+     * 조회년도
+     */
     solYear: number;
+    /**
+     * 조회월
+     */
     solMonth: string;
+    /**
+     * 응답데이터형식 설정
+     */
     type?: GetRestDeInfoTypeEnum;
+    /**
+     * 한 페이지 결과 수
+     */
     numOfRows?: number;
+    /**
+     * 페이지 번호
+     */
     pageNo?: number;
 }
 

@@ -26,22 +26,84 @@ import {
 } from '../models';
 
 export interface AddrLinkApiGetRequest {
+    /**
+     * 주소 검색어
+     */
     keyword: string;
+    /**
+     * 현재 페이지 번호
+     */
     currentPage?: number;
+    /**
+     * 페이지당 출력할 결과 Row 수
+     */
     countPerPage?: number;
+    /**
+     * 검색결과형식 설정
+     */
     resultType?: AddrLinkApiGetResultTypeEnum;
+    /**
+     * 변동된 주소정보 포함 여부 (\* 2020년12월8일 추가된 항목)
+     */
     hstryYn?: AddrLinkApiGetHstryYnEnum;
+    /**
+     * 정렬 (\* 2020년12월8일 추가된 항목)
+     * 
+     * - 정확도순 정렬
+     *   * `none` - Ascending, from A to Z
+     * - 우선정렬: keyword(검색어)가 우선정렬 항목에 포함된 결과 우선 표출 
+     *   * `road` - 도로명 포함
+     *   * `location` - 지번 포함
+     */
     firstSort?: AddrLinkApiGetFirstSortEnum;
+    /**
+     * 출력결과에 추가된 항목(hstryYn, relJibun, hemdNm) 제공여부
+     * 
+     * (\* 2020년12월8일 추가된 항목)
+     * 
+     * (※ 해당 옵션으로 추가제공되는 항목의 경우, 추후 특정항목이 제거되거나 추가될 수 있으니 적용 시 고려해주시기 바랍니다.)
+     */
     addInfoYn?: AddrLinkApiGetAddInfoYnEnum;
 }
 
 export interface AddrLinkApiPostRequest {
+    /**
+     * 주소 검색어
+     */
     keyword: string;
+    /**
+     * 현재 페이지 번호
+     */
     currentPage?: number;
+    /**
+     * 페이지당 출력할 결과 Row 수
+     */
     countPerPage?: number;
+    /**
+     * 검색결과형식 설정
+     */
     resultType?: AddrLinkApiPostResultTypeEnum;
+    /**
+     * 변동된 주소정보 포함 여부 (\* 2020년12월8일 추가된 항목)
+     */
     hstryYn?: AddrLinkApiPostHstryYnEnum;
+    /**
+     * 정렬 (\* 2020년12월8일 추가된 항목)
+     * 
+     * - 정확도순 정렬
+     *   * `none` - Ascending, from A to Z
+     * - 우선정렬: keyword(검색어)가 우선정렬 항목에 포함된 결과 우선 표출 
+     *   * `road` - 도로명 포함
+     *   * `location` - 지번 포함
+     */
     firstSort?: AddrLinkApiPostFirstSortEnum;
+    /**
+     * 출력결과에 추가된 항목(hstryYn, relJibun, hemdNm) 제공여부
+     * 
+     * (\* 2020년12월8일 추가된 항목)
+     * 
+     * (※ 해당 옵션으로 추가제공되는 항목의 경우, 추후 특정항목이 제거되거나 추가될 수 있으니 적용 시 고려해주시기 바랍니다.)
+     */
     addInfoYn?: AddrLinkApiPostAddInfoYnEnum;
 }
 

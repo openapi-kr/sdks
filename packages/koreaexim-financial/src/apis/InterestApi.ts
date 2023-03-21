@@ -23,7 +23,13 @@ import {
 } from '../models';
 
 export interface InterestRequest {
+    /**
+     * 데이터코드, 고정값 AP02
+     */
     data: InterestDataEnum;
+    /**
+     * 검색요청날짜
+     */
     searchdate?: Date;
 }
 

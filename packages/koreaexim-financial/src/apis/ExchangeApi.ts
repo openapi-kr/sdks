@@ -23,7 +23,13 @@ import {
 } from '../models';
 
 export interface ExchangeRequest {
+    /**
+     * 데이터코드, 고정값 AP01
+     */
     data: ExchangeDataEnum;
+    /**
+     * 검색요청날짜
+     */
     searchdate?: Date;
 }
 

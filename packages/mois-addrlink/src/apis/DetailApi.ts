@@ -26,24 +26,72 @@ import {
 } from '../models';
 
 export interface AddrDetailApiGetRequest {
+    /**
+     * 행정구역코드
+     */
     admCd: string;
+    /**
+     * 도로명코드
+     */
     rnMgtSn: string;
+    /**
+     * 지하여부
+     */
     udrtYn: string;
+    /**
+     * 건물본번
+     */
     buldMnnm: number;
+    /**
+     * 건물부번
+     */
     buldSlno: number;
+    /**
+     * 검색유형
+     */
     searchType: AddrDetailApiGetSearchTypeEnum;
+    /**
+     * 동 (층호 검색 시 입력)
+     */
     dongNm?: string;
+    /**
+     * 검색결과형식 설정
+     */
     resultType?: AddrDetailApiGetResultTypeEnum;
 }
 
 export interface AddrDetailApiPostRequest {
+    /**
+     * 행정구역코드
+     */
     admCd: string;
+    /**
+     * 도로명코드
+     */
     rnMgtSn: string;
+    /**
+     * 지하여부
+     */
     udrtYn: string;
+    /**
+     * 건물본번
+     */
     buldMnnm: number;
+    /**
+     * 건물부번
+     */
     buldSlno: number;
+    /**
+     * 검색유형
+     */
     searchType: AddrDetailApiPostSearchTypeEnum;
+    /**
+     * 동 (층호 검색 시 입력)
+     */
     dongNm?: string;
+    /**
+     * 검색결과형식 설정
+     */
     resultType?: AddrDetailApiPostResultTypeEnum;
 }
 

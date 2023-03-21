@@ -26,18 +26,48 @@ import {
 } from '../models';
 
 export interface AddrCoordApiGetRequest {
+    /**
+     * 행정구역코드
+     */
     admCd: string;
+    /**
+     * 도로명코드
+     */
     rnMgtSn: string;
+    /**
+     * 건물본번
+     */
     buldMnnm: number;
+    /**
+     * 건물부번
+     */
     buldSlno: number;
+    /**
+     * 검색결과형식 설정
+     */
     resultType?: AddrCoordApiGetResultTypeEnum;
 }
 
 export interface AddrCoordApiPostRequest {
+    /**
+     * 행정구역코드
+     */
     admCd: string;
+    /**
+     * 도로명코드
+     */
     rnMgtSn: string;
+    /**
+     * 건물본번
+     */
     buldMnnm: number;
+    /**
+     * 건물부번
+     */
     buldSlno: number;
+    /**
+     * 검색결과형식 설정
+     */
     resultType?: AddrCoordApiPostResultTypeEnum;
 }
 

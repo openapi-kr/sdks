@@ -23,7 +23,13 @@ import {
 } from '../models';
 
 export interface InternationalRequest {
+    /**
+     * 데이터코드, 고정값 AP03
+     */
     data: InternationalDataEnum;
+    /**
+     * 검색요청날짜
+     */
     searchdate?: Date;
 }
 

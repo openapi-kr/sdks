@@ -26,16 +26,40 @@ import {
 } from '../models';
 
 export interface AddrEngApiGetRequest {
+    /**
+     * 주소 검색어
+     */
     keyword: string;
+    /**
+     * 현재 페이지 번호
+     */
     currentPage?: number;
+    /**
+     * 페이지당 출력할 결과 Row 수
+     */
     countPerPage?: number;
+    /**
+     * 검색결과형식 설정
+     */
     resultType?: AddrEngApiGetResultTypeEnum;
 }
 
 export interface AddrEngApiPostRequest {
+    /**
+     * 주소 검색어
+     */
     keyword: string;
+    /**
+     * 현재 페이지 번호
+     */
     currentPage?: number;
+    /**
+     * 페이지당 출력할 결과 Row 수
+     */
     countPerPage?: number;
+    /**
+     * 검색결과형식 설정
+     */
     resultType?: AddrEngApiPostResultTypeEnum;
 }
 

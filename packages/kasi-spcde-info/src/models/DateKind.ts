@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * 종류
  * |값|항목명|예시|
@@ -21,15 +20,23 @@
  * |`02`|기념일|의병의 날, 정보보호의 날, 4·19 혁명 기념일|
  * |`03`|24절기|청명, 경칩, 하지|
  * |`04`|잡절|단오, 한식|
- * @export
  */
-export const DateKind = {
-    _01: '01',
-    _02: '02',
-    _03: '03',
-    _04: '04'
-} as const;
-export type DateKind = typeof DateKind[keyof typeof DateKind];
+export type DateKind =
+    '01'|
+    '02'|
+    '03'|
+    '04'
+
+const DateKindValues = [
+    '01',
+    '02',
+    '03',
+    '04',
+]
+
+export function isDateKind(value: any): value is DateKind {
+    return DateKindValues.indexOf(value as unknown as DateKind) !== -1
+}
 
 
 export function DateKindFromJSON(json: any): DateKind {

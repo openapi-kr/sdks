@@ -22,29 +22,26 @@ export interface {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
 
 {{#vars}}
 {{#isEnum}}
-{{#stringEnums}}
 /**
-* @export
-* @enum {string}
-*/
-export enum {{classname}}{{enumName}} {
-{{#allowableValues}}
-    {{#enumVars}}
-    {{{name}}} = {{{value}}}{{^-last}},{{/-last}}
-    {{/enumVars}}
-{{/allowableValues}}
-}
-{{/stringEnums}}{{^stringEnums}}
-/**
- * @export
+ * {{#lambda.indented_star_1}}{{{unescapedDescription}}}{{/lambda.indented_star_1}}
  */
-export const {{classname}}{{enumName}} = {
+export type {{classname}}{{enumName}} =
 {{#allowableValues}}
     {{#enumVars}}
-    {{{name}}}: {{{value}}}{{^-last}},{{/-last}}
+    {{{value}}}{{^-last}}|{{/-last}}
     {{/enumVars}}
 {{/allowableValues}}
-} as const;
-export type {{classname}}{{enumName}} = typeof {{classname}}{{enumName}}[keyof typeof {{classname}}{{enumName}}];
-{{/stringEnums}}
+
+const {{classname}}{{enumName}}Values = [
+{{#allowableValues}}
+    {{#enumVars}}
+    {{{value}}},
+    {{/enumVars}}
+{{/allowableValues}}
+]
+
+export function is{{classname}}{{enumName}}(value: any): value is {{classname}}{{enumName}} {
+    return {{classname}}{{enumName}}Values.indexOf(value as unknown as {{classname}}{{enumName}}) !== -1
+}
+
 {{/isEnum}}{{/vars}}{{/hasEnums}}

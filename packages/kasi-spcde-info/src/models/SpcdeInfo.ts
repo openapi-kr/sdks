@@ -58,15 +58,22 @@ export interface SpcdeInfo {
     seq: number;
 }
 
-
 /**
- * @export
+ * 공휴일여부
  */
-export const SpcdeInfoIsHolidayEnum = {
-    Y: 'Y',
-    N: 'N'
-} as const;
-export type SpcdeInfoIsHolidayEnum = typeof SpcdeInfoIsHolidayEnum[keyof typeof SpcdeInfoIsHolidayEnum];
+export type SpcdeInfoIsHolidayEnum =
+    'Y'|
+    'N'
+
+const SpcdeInfoIsHolidayEnumValues = [
+    'Y',
+    'N',
+]
+
+export function isSpcdeInfoIsHolidayEnum(value: any): value is SpcdeInfoIsHolidayEnum {
+    return SpcdeInfoIsHolidayEnumValues.indexOf(value as unknown as SpcdeInfoIsHolidayEnum) !== -1
+}
+
 
 
 /**
@@ -89,6 +96,15 @@ export function SpcdeInfoFromJSON(json: any): SpcdeInfo {
 
 export function SpcdeInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): SpcdeInfo {
     if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    if (!exists(json, 'isHoliday')) {
+        return json;
+    }
+    if (
+        !isSpcdeInfoIsHolidayEnum(json['isHoliday'])
+        && json['isHoliday'] !== undefined
+    ) {
         return json;
     }
     return {

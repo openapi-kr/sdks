@@ -135,33 +135,60 @@ export interface EnglishAddress {
     korAddr: string;
 }
 
+/**
+ * 공동주택여부
+ * * `1` : 공동주택
+ * * `0` : 비공동주택
+ */
+export type EnglishAddressBdKdcdEnum =
+    '1'|
+    '0'
+
+const EnglishAddressBdKdcdEnumValues = [
+    '1',
+    '0',
+]
+
+export function isEnglishAddressBdKdcdEnum(value: any): value is EnglishAddressBdKdcdEnum {
+    return EnglishAddressBdKdcdEnumValues.indexOf(value as unknown as EnglishAddressBdKdcdEnum) !== -1
+}
 
 /**
- * @export
+ * 지하여부
+ * * `0` : 지상
+ * * `1` : 지하
  */
-export const EnglishAddressBdKdcdEnum = {
-    _1: '1',
-    _0: '0'
-} as const;
-export type EnglishAddressBdKdcdEnum = typeof EnglishAddressBdKdcdEnum[keyof typeof EnglishAddressBdKdcdEnum];
+export type EnglishAddressUdrtYnEnum =
+    '0'|
+    '1'
+
+const EnglishAddressUdrtYnEnumValues = [
+    '0',
+    '1',
+]
+
+export function isEnglishAddressUdrtYnEnum(value: any): value is EnglishAddressUdrtYnEnum {
+    return EnglishAddressUdrtYnEnumValues.indexOf(value as unknown as EnglishAddressUdrtYnEnum) !== -1
+}
 
 /**
- * @export
+ * 산여부
+ * * `0` : 대지
+ * * `1` : 산
  */
-export const EnglishAddressUdrtYnEnum = {
-    _0: '0',
-    _1: '1'
-} as const;
-export type EnglishAddressUdrtYnEnum = typeof EnglishAddressUdrtYnEnum[keyof typeof EnglishAddressUdrtYnEnum];
+export type EnglishAddressMtYnEnum =
+    '0'|
+    '1'
 
-/**
- * @export
- */
-export const EnglishAddressMtYnEnum = {
-    _0: '0',
-    _1: '1'
-} as const;
-export type EnglishAddressMtYnEnum = typeof EnglishAddressMtYnEnum[keyof typeof EnglishAddressMtYnEnum];
+const EnglishAddressMtYnEnumValues = [
+    '0',
+    '1',
+]
+
+export function isEnglishAddressMtYnEnum(value: any): value is EnglishAddressMtYnEnum {
+    return EnglishAddressMtYnEnumValues.indexOf(value as unknown as EnglishAddressMtYnEnum) !== -1
+}
+
 
 
 /**
@@ -196,6 +223,33 @@ export function EnglishAddressFromJSON(json: any): EnglishAddress {
 
 export function EnglishAddressFromJSONTyped(json: any, ignoreDiscriminator: boolean): EnglishAddress {
     if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    if (!exists(json, 'bdKdcd')) {
+        return json;
+    }
+    if (
+        !isEnglishAddressBdKdcdEnum(json['bdKdcd'])
+        && json['bdKdcd'] !== undefined
+    ) {
+        return json;
+    }
+    if (!exists(json, 'udrtYn')) {
+        return json;
+    }
+    if (
+        !isEnglishAddressUdrtYnEnum(json['udrtYn'])
+        && json['udrtYn'] !== undefined
+    ) {
+        return json;
+    }
+    if (!exists(json, 'mtYn')) {
+        return json;
+    }
+    if (
+        !isEnglishAddressMtYnEnum(json['mtYn'])
+        && json['mtYn'] !== undefined
+    ) {
         return json;
     }
     return {

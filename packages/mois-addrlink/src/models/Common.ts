@@ -51,26 +51,44 @@ export interface Common {
     errorMessage: string;
 }
 
-
 /**
- * @export
+ * 에러 코드
  */
-export const CommonErrorCodeEnum = {
-    _0: '0',
-    _999: '-999',
-    E0001: 'E0001',
-    E0005: 'E0005',
-    E0006: 'E0006',
-    E0008: 'E0008',
-    E0009: 'E0009',
-    E0010: 'E0010',
-    E0011: 'E0011',
-    E0012: 'E0012',
-    E0013: 'E0013',
-    E0014: 'E0014',
-    E0015: 'E0015'
-} as const;
-export type CommonErrorCodeEnum = typeof CommonErrorCodeEnum[keyof typeof CommonErrorCodeEnum];
+export type CommonErrorCodeEnum =
+    '0'|
+    '-999'|
+    'E0001'|
+    'E0005'|
+    'E0006'|
+    'E0008'|
+    'E0009'|
+    'E0010'|
+    'E0011'|
+    'E0012'|
+    'E0013'|
+    'E0014'|
+    'E0015'
+
+const CommonErrorCodeEnumValues = [
+    '0',
+    '-999',
+    'E0001',
+    'E0005',
+    'E0006',
+    'E0008',
+    'E0009',
+    'E0010',
+    'E0011',
+    'E0012',
+    'E0013',
+    'E0014',
+    'E0015',
+]
+
+export function isCommonErrorCodeEnum(value: any): value is CommonErrorCodeEnum {
+    return CommonErrorCodeEnumValues.indexOf(value as unknown as CommonErrorCodeEnum) !== -1
+}
+
 
 
 /**
@@ -93,6 +111,15 @@ export function CommonFromJSON(json: any): Common {
 
 export function CommonFromJSONTyped(json: any, ignoreDiscriminator: boolean): Common {
     if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    if (!exists(json, 'errorCode')) {
+        return json;
+    }
+    if (
+        !isCommonErrorCodeEnum(json['errorCode'])
+        && json['errorCode'] !== undefined
+    ) {
         return json;
     }
     return {

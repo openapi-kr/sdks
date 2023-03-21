@@ -44,16 +44,29 @@ export interface InterestFailed {
     intR: string | null;
 }
 
-
 /**
- * @export
+ * 조회 결과
+ * | 결과코드 | 설명 |
+ * | --- | --- |
+ * | 2 | DATA코드 오류 |
+ * | 3 | 인증코드 오류 |
+ * | 4 | 일일제한횟수 마감 |
  */
-export const InterestFailedResultEnum = {
-    NUMBER_2: 2,
-    NUMBER_3: 3,
-    NUMBER_4: 4
-} as const;
-export type InterestFailedResultEnum = typeof InterestFailedResultEnum[keyof typeof InterestFailedResultEnum];
+export type InterestFailedResultEnum =
+    2|
+    3|
+    4
+
+const InterestFailedResultEnumValues = [
+    2,
+    3,
+    4,
+]
+
+export function isInterestFailedResultEnum(value: any): value is InterestFailedResultEnum {
+    return InterestFailedResultEnumValues.indexOf(value as unknown as InterestFailedResultEnum) !== -1
+}
+
 
 
 /**
@@ -74,6 +87,15 @@ export function InterestFailedFromJSON(json: any): InterestFailed {
 
 export function InterestFailedFromJSONTyped(json: any, ignoreDiscriminator: boolean): InterestFailed {
     if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    if (!exists(json, 'result')) {
+        return json;
+    }
+    if (
+        !isInterestFailedResultEnum(json['result'])
+        && json['result'] !== undefined
+    ) {
         return json;
     }
     return {

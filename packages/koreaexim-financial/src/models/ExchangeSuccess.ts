@@ -87,14 +87,20 @@ export interface ExchangeSuccess {
     kftcBkpr: string;
 }
 
-
 /**
- * @export
+ * 조회 결과
  */
-export const ExchangeSuccessResultEnum = {
-    NUMBER_1: 1
-} as const;
-export type ExchangeSuccessResultEnum = typeof ExchangeSuccessResultEnum[keyof typeof ExchangeSuccessResultEnum];
+export type ExchangeSuccessResultEnum =
+    1
+
+const ExchangeSuccessResultEnumValues = [
+    1,
+]
+
+export function isExchangeSuccessResultEnum(value: any): value is ExchangeSuccessResultEnum {
+    return ExchangeSuccessResultEnumValues.indexOf(value as unknown as ExchangeSuccessResultEnum) !== -1
+}
+
 
 
 /**
@@ -123,6 +129,15 @@ export function ExchangeSuccessFromJSON(json: any): ExchangeSuccess {
 
 export function ExchangeSuccessFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExchangeSuccess {
     if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    if (!exists(json, 'result')) {
+        return json;
+    }
+    if (
+        !isExchangeSuccessResultEnum(json['result'])
+        && json['result'] !== undefined
+    ) {
         return json;
     }
     return {

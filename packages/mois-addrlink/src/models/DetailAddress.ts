@@ -71,15 +71,24 @@ export interface DetailAddress {
     hoNm?: string;
 }
 
-
 /**
- * @export
+ * 지하여부
+ * * `0` : 지상
+ * * `1` : 지하
  */
-export const DetailAddressUdrtYnEnum = {
-    _0: '0',
-    _1: '1'
-} as const;
-export type DetailAddressUdrtYnEnum = typeof DetailAddressUdrtYnEnum[keyof typeof DetailAddressUdrtYnEnum];
+export type DetailAddressUdrtYnEnum =
+    '0'|
+    '1'
+
+const DetailAddressUdrtYnEnumValues = [
+    '0',
+    '1',
+]
+
+export function isDetailAddressUdrtYnEnum(value: any): value is DetailAddressUdrtYnEnum {
+    return DetailAddressUdrtYnEnumValues.indexOf(value as unknown as DetailAddressUdrtYnEnum) !== -1
+}
+
 
 
 /**
@@ -102,6 +111,15 @@ export function DetailAddressFromJSON(json: any): DetailAddress {
 
 export function DetailAddressFromJSONTyped(json: any, ignoreDiscriminator: boolean): DetailAddress {
     if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    if (!exists(json, 'udrtYn')) {
+        return json;
+    }
+    if (
+        !isDetailAddressUdrtYnEnum(json['udrtYn'])
+        && json['udrtYn'] !== undefined
+    ) {
         return json;
     }
     return {

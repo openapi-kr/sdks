@@ -92,16 +92,29 @@ export interface ExchangeFailed {
     kftcBkpr: string | null;
 }
 
-
 /**
- * @export
+ * 조회 결과
+ * | 결과코드 | 설명 |
+ * | --- | --- |
+ * | 2 | DATA코드 오류 |
+ * | 3 | 인증코드 오류 |
+ * | 4 | 일일제한횟수 마감 |
  */
-export const ExchangeFailedResultEnum = {
-    NUMBER_2: 2,
-    NUMBER_3: 3,
-    NUMBER_4: 4
-} as const;
-export type ExchangeFailedResultEnum = typeof ExchangeFailedResultEnum[keyof typeof ExchangeFailedResultEnum];
+export type ExchangeFailedResultEnum =
+    2|
+    3|
+    4
+
+const ExchangeFailedResultEnumValues = [
+    2,
+    3,
+    4,
+]
+
+export function isExchangeFailedResultEnum(value: any): value is ExchangeFailedResultEnum {
+    return ExchangeFailedResultEnumValues.indexOf(value as unknown as ExchangeFailedResultEnum) !== -1
+}
+
 
 
 /**
@@ -130,6 +143,15 @@ export function ExchangeFailedFromJSON(json: any): ExchangeFailed {
 
 export function ExchangeFailedFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExchangeFailed {
     if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    if (!exists(json, 'result')) {
+        return json;
+    }
+    if (
+        !isExchangeFailedResultEnum(json['result'])
+        && json['result'] !== undefined
+    ) {
         return json;
     }
     return {

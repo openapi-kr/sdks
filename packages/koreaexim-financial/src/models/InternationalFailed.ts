@@ -50,16 +50,29 @@ export interface InternationalFailed {
     intR: string | null;
 }
 
-
 /**
- * @export
+ * 조회 결과
+ * | 결과코드 | 설명 |
+ * | --- | --- |
+ * | 2 | DATA코드 오류 |
+ * | 3 | 인증코드 오류 |
+ * | 4 | 일일제한횟수 마감 |
  */
-export const InternationalFailedResultEnum = {
-    NUMBER_2: 2,
-    NUMBER_3: 3,
-    NUMBER_4: 4
-} as const;
-export type InternationalFailedResultEnum = typeof InternationalFailedResultEnum[keyof typeof InternationalFailedResultEnum];
+export type InternationalFailedResultEnum =
+    2|
+    3|
+    4
+
+const InternationalFailedResultEnumValues = [
+    2,
+    3,
+    4,
+]
+
+export function isInternationalFailedResultEnum(value: any): value is InternationalFailedResultEnum {
+    return InternationalFailedResultEnumValues.indexOf(value as unknown as InternationalFailedResultEnum) !== -1
+}
+
 
 
 /**
@@ -81,6 +94,15 @@ export function InternationalFailedFromJSON(json: any): InternationalFailed {
 
 export function InternationalFailedFromJSONTyped(json: any, ignoreDiscriminator: boolean): InternationalFailed {
     if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    if (!exists(json, 'result')) {
+        return json;
+    }
+    if (
+        !isInternationalFailedResultEnum(json['result'])
+        && json['result'] !== undefined
+    ) {
         return json;
     }
     return {

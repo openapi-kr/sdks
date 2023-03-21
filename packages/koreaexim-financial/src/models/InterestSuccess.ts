@@ -39,14 +39,20 @@ export interface InterestSuccess {
     intR: string;
 }
 
-
 /**
- * @export
+ * 조회 결과
  */
-export const InterestSuccessResultEnum = {
-    NUMBER_1: 1
-} as const;
-export type InterestSuccessResultEnum = typeof InterestSuccessResultEnum[keyof typeof InterestSuccessResultEnum];
+export type InterestSuccessResultEnum =
+    1
+
+const InterestSuccessResultEnumValues = [
+    1,
+]
+
+export function isInterestSuccessResultEnum(value: any): value is InterestSuccessResultEnum {
+    return InterestSuccessResultEnumValues.indexOf(value as unknown as InterestSuccessResultEnum) !== -1
+}
+
 
 
 /**
@@ -67,6 +73,15 @@ export function InterestSuccessFromJSON(json: any): InterestSuccess {
 
 export function InterestSuccessFromJSONTyped(json: any, ignoreDiscriminator: boolean): InterestSuccess {
     if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    if (!exists(json, 'result')) {
+        return json;
+    }
+    if (
+        !isInterestSuccessResultEnum(json['result'])
+        && json['result'] !== undefined
+    ) {
         return json;
     }
     return {

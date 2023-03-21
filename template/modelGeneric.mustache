@@ -52,6 +52,26 @@ export function {{classname}}FromJSONTyped(json: any, ignoreDiscriminator: boole
 {{/discriminator.mappedModels}}
     }
 {{/discriminator}}
+    {{#vars}}
+    {{#isEnum}}
+    {{#required}}
+    if (!exists(json, '{{baseName}}')) {
+        return json;
+    }
+    {{/required}}
+    if (
+        !is{{datatypeWithEnum}}(json['{{baseName}}'])
+        {{#isNullable}}
+        && json['{{baseName}}'] !== null
+        {{/isNullable}}
+        {{#required}}
+        && json['{{baseName}}'] !== undefined
+        {{/required}}
+    ) {
+        return json;
+    }
+    {{/isEnum}}
+    {{/vars}}
     return {
         {{#parent}}...{{{.}}}FromJSONTyped(json, ignoreDiscriminator),{{/parent}}
         {{#additionalPropertiesType}}

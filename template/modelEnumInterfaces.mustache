@@ -1,27 +1,21 @@
-{{#stringEnums}}
 /**
  * {{#lambda.indented_star_1}}{{{unescapedDescription}}}{{/lambda.indented_star_1}}
- * @export
- * @enum {string}
  */
-export enum {{classname}} {
+export type {{classname}} =
 {{#allowableValues}}
-{{#enumVars}}
-    {{{name}}} = {{{value}}}{{^-last}},{{/-last}}
-{{/enumVars}}
+    {{#enumVars}}
+    {{{value}}}{{^-last}}|{{/-last}}
+    {{/enumVars}}
 {{/allowableValues}}
+
+const {{classname}}Values = [
+{{#allowableValues}}
+    {{#enumVars}}
+    {{{value}}},
+    {{/enumVars}}
+{{/allowableValues}}
+]
+
+export function is{{classname}}(value: any): value is {{classname}} {
+    return {{classname}}Values.indexOf(value as unknown as {{classname}}) !== -1
 }
-{{/stringEnums}}{{^stringEnums}}
-/**
- * {{#lambda.indented_star_1}}{{{unescapedDescription}}}{{/lambda.indented_star_1}}
- * @export
- */
-export const {{classname}} = {
-{{#allowableValues}}
-{{#enumVars}}
-    {{{name}}}: {{{value}}}{{^-last}},{{/-last}}
-{{/enumVars}}
-{{/allowableValues}}
-} as const;
-export type {{classname}} = typeof {{classname}}[keyof typeof {{classname}}];
-{{/stringEnums}}

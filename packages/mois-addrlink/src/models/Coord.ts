@@ -77,15 +77,24 @@ export interface Coord {
     bdNm?: string;
 }
 
-
 /**
- * @export
+ * 지하여부
+ * * `0` : 지상
+ * - `1` : 지하
  */
-export const CoordUdrtYnEnum = {
-    _0: '0',
-    _1: '1'
-} as const;
-export type CoordUdrtYnEnum = typeof CoordUdrtYnEnum[keyof typeof CoordUdrtYnEnum];
+export type CoordUdrtYnEnum =
+    '0'|
+    '1'
+
+const CoordUdrtYnEnumValues = [
+    '0',
+    '1',
+]
+
+export function isCoordUdrtYnEnum(value: any): value is CoordUdrtYnEnum {
+    return CoordUdrtYnEnumValues.indexOf(value as unknown as CoordUdrtYnEnum) !== -1
+}
+
 
 
 /**
@@ -111,6 +120,15 @@ export function CoordFromJSON(json: any): Coord {
 
 export function CoordFromJSONTyped(json: any, ignoreDiscriminator: boolean): Coord {
     if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    if (!exists(json, 'udrtYn')) {
+        return json;
+    }
+    if (
+        !isCoordUdrtYnEnum(json['udrtYn'])
+        && json['udrtYn'] !== undefined
+    ) {
         return json;
     }
     return {

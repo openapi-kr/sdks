@@ -88,14 +88,20 @@ export interface InternationalSuccess {
     cirrList: Array<InternationalSuccessItem>;
 }
 
-
 /**
- * @export
+ * 조회 결과
  */
-export const InternationalSuccessResultEnum = {
-    NUMBER_1: 1
-} as const;
-export type InternationalSuccessResultEnum = typeof InternationalSuccessResultEnum[keyof typeof InternationalSuccessResultEnum];
+export type InternationalSuccessResultEnum =
+    1
+
+const InternationalSuccessResultEnumValues = [
+    1,
+]
+
+export function isInternationalSuccessResultEnum(value: any): value is InternationalSuccessResultEnum {
+    return InternationalSuccessResultEnumValues.indexOf(value as unknown as InternationalSuccessResultEnum) !== -1
+}
+
 
 
 /**
@@ -123,6 +129,15 @@ export function InternationalSuccessFromJSON(json: any): InternationalSuccess {
 
 export function InternationalSuccessFromJSONTyped(json: any, ignoreDiscriminator: boolean): InternationalSuccess {
     if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    if (!exists(json, 'result')) {
+        return json;
+    }
+    if (
+        !isInternationalSuccessResultEnum(json['result'])
+        && json['result'] !== undefined
+    ) {
         return json;
     }
     return {

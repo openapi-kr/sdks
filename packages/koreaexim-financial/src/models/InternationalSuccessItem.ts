@@ -45,14 +45,20 @@ export interface InternationalSuccessItem {
     intR: string;
 }
 
-
 /**
- * @export
+ * 조회 결과
  */
-export const InternationalSuccessItemResultEnum = {
-    NUMBER_1: 1
-} as const;
-export type InternationalSuccessItemResultEnum = typeof InternationalSuccessItemResultEnum[keyof typeof InternationalSuccessItemResultEnum];
+export type InternationalSuccessItemResultEnum =
+    1
+
+const InternationalSuccessItemResultEnumValues = [
+    1,
+]
+
+export function isInternationalSuccessItemResultEnum(value: any): value is InternationalSuccessItemResultEnum {
+    return InternationalSuccessItemResultEnumValues.indexOf(value as unknown as InternationalSuccessItemResultEnum) !== -1
+}
+
 
 
 /**
@@ -74,6 +80,15 @@ export function InternationalSuccessItemFromJSON(json: any): InternationalSucces
 
 export function InternationalSuccessItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): InternationalSuccessItem {
     if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    if (!exists(json, 'result')) {
+        return json;
+    }
+    if (
+        !isInternationalSuccessItemResultEnum(json['result'])
+        && json['result'] !== undefined
+    ) {
         return json;
     }
     return {

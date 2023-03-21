@@ -193,42 +193,78 @@ export interface Address {
     hemdNm?: string;
 }
 
+/**
+ * 공동주택여부
+ * * `1` : 공동주택
+ * * `0` : 비공동주택
+ */
+export type AddressBdKdcdEnum =
+    '0'|
+    '1'
+
+const AddressBdKdcdEnumValues = [
+    '0',
+    '1',
+]
+
+export function isAddressBdKdcdEnum(value: any): value is AddressBdKdcdEnum {
+    return AddressBdKdcdEnumValues.indexOf(value as unknown as AddressBdKdcdEnum) !== -1
+}
 
 /**
- * @export
+ * 지하여부
+ * * `0` : 지상
+ * * `1` : 지하)
  */
-export const AddressBdKdcdEnum = {
-    _0: '0',
-    _1: '1'
-} as const;
-export type AddressBdKdcdEnum = typeof AddressBdKdcdEnum[keyof typeof AddressBdKdcdEnum];
+export type AddressUdrtYnEnum =
+    '0'|
+    '1'
+
+const AddressUdrtYnEnumValues = [
+    '0',
+    '1',
+]
+
+export function isAddressUdrtYnEnum(value: any): value is AddressUdrtYnEnum {
+    return AddressUdrtYnEnumValues.indexOf(value as unknown as AddressUdrtYnEnum) !== -1
+}
 
 /**
- * @export
+ * 산여부
+ * * `0` : 대지
+ * * `1` : 산
  */
-export const AddressUdrtYnEnum = {
-    _0: '0',
-    _1: '1'
-} as const;
-export type AddressUdrtYnEnum = typeof AddressUdrtYnEnum[keyof typeof AddressUdrtYnEnum];
+export type AddressMtYnEnum =
+    '0'|
+    '1'
+
+const AddressMtYnEnumValues = [
+    '0',
+    '1',
+]
+
+export function isAddressMtYnEnum(value: any): value is AddressMtYnEnum {
+    return AddressMtYnEnumValues.indexOf(value as unknown as AddressMtYnEnum) !== -1
+}
 
 /**
- * @export
+ * 변동이력여부 (\* 2020년12월8일 추가된 항목)
+ * * `0`: 현행 주소정보
+ * * `1`: 요청변수의 keyword(검색어)가 변동된 주소정보에서 검색된 정보)
  */
-export const AddressMtYnEnum = {
-    _0: '0',
-    _1: '1'
-} as const;
-export type AddressMtYnEnum = typeof AddressMtYnEnum[keyof typeof AddressMtYnEnum];
+export type AddressHstryYnEnum =
+    '0'|
+    '1'
 
-/**
- * @export
- */
-export const AddressHstryYnEnum = {
-    _0: '0',
-    _1: '1'
-} as const;
-export type AddressHstryYnEnum = typeof AddressHstryYnEnum[keyof typeof AddressHstryYnEnum];
+const AddressHstryYnEnumValues = [
+    '0',
+    '1',
+]
+
+export function isAddressHstryYnEnum(value: any): value is AddressHstryYnEnum {
+    return AddressHstryYnEnumValues.indexOf(value as unknown as AddressHstryYnEnum) !== -1
+}
+
 
 
 /**
@@ -266,6 +302,38 @@ export function AddressFromJSON(json: any): Address {
 
 export function AddressFromJSONTyped(json: any, ignoreDiscriminator: boolean): Address {
     if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    if (!exists(json, 'bdKdcd')) {
+        return json;
+    }
+    if (
+        !isAddressBdKdcdEnum(json['bdKdcd'])
+        && json['bdKdcd'] !== undefined
+    ) {
+        return json;
+    }
+    if (!exists(json, 'udrtYn')) {
+        return json;
+    }
+    if (
+        !isAddressUdrtYnEnum(json['udrtYn'])
+        && json['udrtYn'] !== undefined
+    ) {
+        return json;
+    }
+    if (!exists(json, 'mtYn')) {
+        return json;
+    }
+    if (
+        !isAddressMtYnEnum(json['mtYn'])
+        && json['mtYn'] !== undefined
+    ) {
+        return json;
+    }
+    if (
+        !isAddressHstryYnEnum(json['hstryYn'])
+    ) {
         return json;
     }
     return {

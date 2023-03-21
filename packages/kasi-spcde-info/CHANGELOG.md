@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/openapi-kr/sdks/compare/@openapi-kr/kasi-spcde-info@1.1.0...@openapi-kr/kasi-spcde-info@1.2.0) (2023-03-21)
+
+
+### Features
+
+* enum 생성코드 수정 ([5e6ec29](https://github.com/openapi-kr/sdks/commit/5e6ec29b1293e4581938caa5fa8dbd3c533bae20))
+
+
+
+
+
 # [1.1.0](https://github.com/openapi-kr/sdks/compare/@openapi-kr/kasi-spcde-info@1.0.0...@openapi-kr/kasi-spcde-info@1.1.0) (2023-03-21)
 
 

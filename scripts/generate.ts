@@ -22,7 +22,7 @@ async function getUpdatedSpecifications() {
 export async function getLocalPackageVersion(packageName: string) {
   const packagePath = path.join(__dirname, '..', 'packages', packageName)
   if (!fs.existsSync(packagePath)) {
-    return '1.0.0-alpha.0'
+    return '0.0.0-alpha.0'
   }
 
   const file = await fs.promises.readFile(

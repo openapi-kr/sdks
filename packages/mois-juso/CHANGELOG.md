@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.1](https://github.com/openapi-kr/sdks/compare/@openapi-kr/mois-juso@0.0.0...@openapi-kr/mois-juso@0.0.1) (2023-03-24)
+
+
+### Bug Fixes
+
+* **mois/juso:** 문서에 누락된 주소 추가 ([a588947](https://github.com/openapi-kr/sdks/commit/a5889474b53d0edb7d1d296ff617f48119ce50f0))
+
+
+
+
+
 # 0.0.0 (2023-03-24)
 
 

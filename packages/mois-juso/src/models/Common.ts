@@ -56,6 +56,7 @@ export interface Common {
  */
 export type CommonErrorCodeEnum =
     '0'|
+    '400'|
     '-999'|
     'E0001'|
     'E0005'|
@@ -71,6 +72,7 @@ export type CommonErrorCodeEnum =
 
 const CommonErrorCodeEnumValues = [
     '0',
+    '400',
     '-999',
     'E0001',
     'E0005',

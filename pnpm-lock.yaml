@@ -37,6 +37,12 @@ importers:
     devDependencies:
       typescript: 5.0.2
 
+  packages/molit-apart-housing-price-service:
+    specifiers:
+      typescript: ^5.0
+    devDependencies:
+      typescript: 5.0.2
+
 packages:
 
   /@babel/code-frame/7.18.6:

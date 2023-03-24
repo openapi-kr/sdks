@@ -19,19 +19,19 @@ importers:
       '@types/node': 18.15.3
       lerna: 6.5.1
 
-  packages/kasi-spcde-info:
+  packages/eximbank-financial:
     specifiers:
       typescript: ^5.0
     devDependencies:
       typescript: 5.0.2
 
-  packages/koreaexim-financial:
+  packages/kasi-special-dates-info:
     specifiers:
       typescript: ^5.0
     devDependencies:
       typescript: 5.0.2
 
-  packages/mois-addrlink:
+  packages/mois-juso:
     specifiers:
       typescript: ^5.0
     devDependencies:

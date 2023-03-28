@@ -19,6 +19,12 @@ importers:
       '@types/node': 18.15.3
       lerna: 6.5.1
 
+  packages/dart:
+    specifiers:
+      typescript: ^5.0
+    devDependencies:
+      typescript: 5.0.2
+
   packages/eximbank-financial:
     specifiers:
       typescript: ^5.0

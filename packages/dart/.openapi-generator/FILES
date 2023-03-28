@@ -1,0 +1,17 @@
+.gitignore
+.npmignore
+.openapi-generator-ignore
+README.md
+package.json
+src/apis/BusinessReportApi.ts
+src/apis/DisclosureInformationApi.ts
+src/apis/EquityDisclosureApi.ts
+src/apis/FinancialApi.ts
+src/apis/MaterialFactsReportApi.ts
+src/apis/RegistrationStatementsApi.ts
+src/apis/index.ts
+src/index.ts
+src/models/index.ts
+src/runtime.ts
+tsconfig.esm.json
+tsconfig.json

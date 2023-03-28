@@ -17,10 +17,6 @@ import * as runtime from '../runtime';
 import type {
   ApartHousingPriceAttrResponse,
 } from '../models';
-import {
-    ApartHousingPriceAttrResponseFromJSON,
-    ApartHousingPriceAttrResponseToJSON,
-} from '../models';
 
 export interface GetApartHousingPriceAttrRequest {
     /**
@@ -157,7 +153,7 @@ export class ApartHousingPriceServiceApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ApartHousingPriceAttrResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -260,28 +256,29 @@ export class ApartHousingPriceServiceApi extends runtime.BaseAPI {
 }
 
 /**
- * @export
+ * 응답결과 형식
  */
-export const GetApartHousingPriceAttrFormatEnum = {
-    Json: 'json',
-    Xml: 'xml'
-} as const;
-export type GetApartHousingPriceAttrFormatEnum = typeof GetApartHousingPriceAttrFormatEnum[keyof typeof GetApartHousingPriceAttrFormatEnum];
+export type GetApartHousingPriceAttrFormatEnum =
+    'json'|
+    'xml'
 /**
- * @export
+ * 산출물 형식
+ * 
+ * 반환 이미지 형식. png나   jpeg(jpg), gif 이미지 포맷을 지원
  */
-export const WmsGetApartHousingPriceWMSGetFormatEnum = {
-    Png: 'image/png',
-    Jpeg: 'image/jpeg',
-    Gif: 'image/gif'
-} as const;
-export type WmsGetApartHousingPriceWMSGetFormatEnum = typeof WmsGetApartHousingPriceWMSGetFormatEnum[keyof typeof WmsGetApartHousingPriceWMSGetFormatEnum];
+export type WmsGetApartHousingPriceWMSGetFormatEnum =
+    'image/png'|
+    'image/jpeg'|
+    'image/gif'
 /**
- * @export
+ * 예외 보고
+ * 
+ * 예외 발생 시 처리 방법.
+ * 1. blank : 빈 이미지
+ * 2. xml : utf8 인코딩형식으로 에러 코드, 이름, 설명 정보를 담은   xml 파일
+ * 3. inimage : 에러 정보가 포함된 이미지
  */
-export const WmsGetApartHousingPriceWMSGetExceptionsEnum = {
-    Blank: 'blank',
-    Xml: 'xml',
-    Inimage: 'inimage'
-} as const;
-export type WmsGetApartHousingPriceWMSGetExceptionsEnum = typeof WmsGetApartHousingPriceWMSGetExceptionsEnum[keyof typeof WmsGetApartHousingPriceWMSGetExceptionsEnum];
+export type WmsGetApartHousingPriceWMSGetExceptionsEnum =
+    'blank'|
+    'xml'|
+    'inimage'

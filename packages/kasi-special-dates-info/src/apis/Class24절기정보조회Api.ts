@@ -18,12 +18,6 @@ import type {
   Response,
   ResponseXML,
 } from '../models';
-import {
-    ResponseFromJSON,
-    ResponseToJSON,
-    ResponseXMLFromJSON,
-    ResponseXMLToJSON,
-} from '../models';
 
 export interface Get24DivisionsInfoRequest {
     /**
@@ -101,7 +95,7 @@ export class Class24절기정보조회Api extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -116,10 +110,8 @@ export class Class24절기정보조회Api extends runtime.BaseAPI {
 }
 
 /**
- * @export
+ * 응답데이터형식 설정
  */
-export const Get24DivisionsInfoTypeEnum = {
-    Json: 'json',
-    Xml: 'xml'
-} as const;
-export type Get24DivisionsInfoTypeEnum = typeof Get24DivisionsInfoTypeEnum[keyof typeof Get24DivisionsInfoTypeEnum];
+export type Get24DivisionsInfoTypeEnum =
+    'json'|
+    'xml'

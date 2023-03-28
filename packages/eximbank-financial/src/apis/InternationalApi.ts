@@ -17,10 +17,6 @@ import * as runtime from '../runtime';
 import type {
   InternationalResponse,
 } from '../models';
-import {
-    InternationalResponseFromJSON,
-    InternationalResponseToJSON,
-} from '../models';
 
 export interface InternationalRequest {
     /**
@@ -30,7 +26,7 @@ export interface InternationalRequest {
     /**
      * 검색요청날짜
      */
-    searchdate?: Date;
+    searchdate?: string;
 }
 
 /**
@@ -52,7 +48,7 @@ export class InternationalApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters.searchdate !== undefined) {
-            queryParameters['searchdate'] = (requestParameters.searchdate as any).toISOString().substr(0,10);
+            queryParameters['searchdate'] = requestParameters.searchdate;
         }
 
         if (requestParameters.data !== undefined) {
@@ -72,7 +68,7 @@ export class InternationalApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => InternationalResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -89,9 +85,7 @@ export class InternationalApi extends runtime.BaseAPI {
 }
 
 /**
- * @export
+ * 데이터코드, 고정값 AP03
  */
-export const InternationalDataEnum = {
-    Ap03: 'AP03'
-} as const;
-export type InternationalDataEnum = typeof InternationalDataEnum[keyof typeof InternationalDataEnum];
+export type InternationalDataEnum =
+    'AP03'

@@ -18,12 +18,6 @@ import type {
   AddrDetailResponse,
   AddrDetailResults,
 } from '../models';
-import {
-    AddrDetailResponseFromJSON,
-    AddrDetailResponseToJSON,
-    AddrDetailResultsFromJSON,
-    AddrDetailResultsToJSON,
-} from '../models';
 
 export interface AddrDetailApiGetRequest {
     /**
@@ -176,7 +170,7 @@ export class DetailApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AddrDetailResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -264,7 +258,7 @@ export class DetailApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AddrDetailResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -279,34 +273,26 @@ export class DetailApi extends runtime.BaseAPI {
 }
 
 /**
- * @export
+ * 검색유형
  */
-export const AddrDetailApiGetSearchTypeEnum = {
-    Dong: 'dong',
-    Floorho: 'floorho'
-} as const;
-export type AddrDetailApiGetSearchTypeEnum = typeof AddrDetailApiGetSearchTypeEnum[keyof typeof AddrDetailApiGetSearchTypeEnum];
+export type AddrDetailApiGetSearchTypeEnum =
+    'dong'|
+    'floorho'
 /**
- * @export
+ * 검색결과형식 설정
  */
-export const AddrDetailApiGetResultTypeEnum = {
-    Xml: 'xml',
-    Json: 'json'
-} as const;
-export type AddrDetailApiGetResultTypeEnum = typeof AddrDetailApiGetResultTypeEnum[keyof typeof AddrDetailApiGetResultTypeEnum];
+export type AddrDetailApiGetResultTypeEnum =
+    'xml'|
+    'json'
 /**
- * @export
+ * 검색유형
  */
-export const AddrDetailApiPostSearchTypeEnum = {
-    Dong: 'dong',
-    Floorho: 'floorho'
-} as const;
-export type AddrDetailApiPostSearchTypeEnum = typeof AddrDetailApiPostSearchTypeEnum[keyof typeof AddrDetailApiPostSearchTypeEnum];
+export type AddrDetailApiPostSearchTypeEnum =
+    'dong'|
+    'floorho'
 /**
- * @export
+ * 검색결과형식 설정
  */
-export const AddrDetailApiPostResultTypeEnum = {
-    Xml: 'xml',
-    Json: 'json'
-} as const;
-export type AddrDetailApiPostResultTypeEnum = typeof AddrDetailApiPostResultTypeEnum[keyof typeof AddrDetailApiPostResultTypeEnum];
+export type AddrDetailApiPostResultTypeEnum =
+    'xml'|
+    'json'

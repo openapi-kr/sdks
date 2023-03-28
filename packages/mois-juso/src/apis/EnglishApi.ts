@@ -18,12 +18,6 @@ import type {
   AddrEngResponse,
   AddrEngResults,
 } from '../models';
-import {
-    AddrEngResponseFromJSON,
-    AddrEngResponseToJSON,
-    AddrEngResultsFromJSON,
-    AddrEngResultsToJSON,
-} from '../models';
 
 export interface AddrEngApiGetRequest {
     /**
@@ -108,7 +102,7 @@ export class EnglishApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AddrEngResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -160,7 +154,7 @@ export class EnglishApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AddrEngResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -175,18 +169,14 @@ export class EnglishApi extends runtime.BaseAPI {
 }
 
 /**
- * @export
+ * 검색결과형식 설정
  */
-export const AddrEngApiGetResultTypeEnum = {
-    Xml: 'xml',
-    Json: 'json'
-} as const;
-export type AddrEngApiGetResultTypeEnum = typeof AddrEngApiGetResultTypeEnum[keyof typeof AddrEngApiGetResultTypeEnum];
+export type AddrEngApiGetResultTypeEnum =
+    'xml'|
+    'json'
 /**
- * @export
+ * 검색결과형식 설정
  */
-export const AddrEngApiPostResultTypeEnum = {
-    Xml: 'xml',
-    Json: 'json'
-} as const;
-export type AddrEngApiPostResultTypeEnum = typeof AddrEngApiPostResultTypeEnum[keyof typeof AddrEngApiPostResultTypeEnum];
+export type AddrEngApiPostResultTypeEnum =
+    'xml'|
+    'json'

@@ -76,6 +76,8 @@ export async function generatePackage(specification: string) {
     `--additional-properties=npmVersion=${npmVersion}`,
     '--additional-properties=supportsES6=true',
     '--additional-properties=allowUnicodeIdentifiers=true',
+    '--additional-properties=modelPropertyNaming=original',
+    '--additional-properties=withoutRuntimeChecks=true',
   ])
 }
 

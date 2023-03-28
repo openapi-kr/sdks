@@ -17,10 +17,6 @@ import * as runtime from '../runtime';
 import type {
   ExchangeResponse,
 } from '../models';
-import {
-    ExchangeResponseFromJSON,
-    ExchangeResponseToJSON,
-} from '../models';
 
 export interface ExchangeRequest {
     /**
@@ -30,7 +26,7 @@ export interface ExchangeRequest {
     /**
      * 검색요청날짜
      */
-    searchdate?: Date;
+    searchdate?: string;
 }
 
 /**
@@ -66,7 +62,7 @@ export class ExchangeApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters.searchdate !== undefined) {
-            queryParameters['searchdate'] = (requestParameters.searchdate as any).toISOString().substr(0,10);
+            queryParameters['searchdate'] = requestParameters.searchdate;
         }
 
         if (requestParameters.data !== undefined) {
@@ -86,7 +82,7 @@ export class ExchangeApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ExchangeResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -117,9 +113,7 @@ export class ExchangeApi extends runtime.BaseAPI {
 }
 
 /**
- * @export
+ * 데이터코드, 고정값 AP01
  */
-export const ExchangeDataEnum = {
-    Ap01: 'AP01'
-} as const;
-export type ExchangeDataEnum = typeof ExchangeDataEnum[keyof typeof ExchangeDataEnum];
+export type ExchangeDataEnum =
+    'AP01'

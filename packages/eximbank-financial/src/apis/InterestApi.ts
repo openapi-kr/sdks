@@ -17,10 +17,6 @@ import * as runtime from '../runtime';
 import type {
   InterestResponseInner,
 } from '../models';
-import {
-    InterestResponseInnerFromJSON,
-    InterestResponseInnerToJSON,
-} from '../models';
 
 export interface InterestRequest {
     /**
@@ -30,7 +26,7 @@ export interface InterestRequest {
     /**
      * 검색요청날짜
      */
-    searchdate?: Date;
+    searchdate?: string;
 }
 
 /**
@@ -52,7 +48,7 @@ export class InterestApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters.searchdate !== undefined) {
-            queryParameters['searchdate'] = (requestParameters.searchdate as any).toISOString().substr(0,10);
+            queryParameters['searchdate'] = requestParameters.searchdate;
         }
 
         if (requestParameters.data !== undefined) {
@@ -72,7 +68,7 @@ export class InterestApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(InterestResponseInnerFromJSON));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -89,9 +85,7 @@ export class InterestApi extends runtime.BaseAPI {
 }
 
 /**
- * @export
+ * 데이터코드, 고정값 AP02
  */
-export const InterestDataEnum = {
-    Ap02: 'AP02'
-} as const;
-export type InterestDataEnum = typeof InterestDataEnum[keyof typeof InterestDataEnum];
+export type InterestDataEnum =
+    'AP02'

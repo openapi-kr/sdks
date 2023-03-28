@@ -18,12 +18,6 @@ import type {
   AddrLinkResponse,
   AddrLinkResults,
 } from '../models';
-import {
-    AddrLinkResponseFromJSON,
-    AddrLinkResponseToJSON,
-    AddrLinkResultsFromJSON,
-    AddrLinkResultsToJSON,
-} from '../models';
 
 export interface AddrLinkApiGetRequest {
     /**
@@ -164,7 +158,7 @@ export class LinkApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AddrLinkResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -228,7 +222,7 @@ export class LinkApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AddrLinkResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -243,68 +237,72 @@ export class LinkApi extends runtime.BaseAPI {
 }
 
 /**
- * @export
+ * 검색결과형식 설정
  */
-export const AddrLinkApiGetResultTypeEnum = {
-    Xml: 'xml',
-    Json: 'json'
-} as const;
-export type AddrLinkApiGetResultTypeEnum = typeof AddrLinkApiGetResultTypeEnum[keyof typeof AddrLinkApiGetResultTypeEnum];
+export type AddrLinkApiGetResultTypeEnum =
+    'xml'|
+    'json'
 /**
- * @export
+ * 변동된 주소정보 포함 여부 (\* 2020년12월8일 추가된 항목)
  */
-export const AddrLinkApiGetHstryYnEnum = {
-    Y: 'Y',
-    N: 'N'
-} as const;
-export type AddrLinkApiGetHstryYnEnum = typeof AddrLinkApiGetHstryYnEnum[keyof typeof AddrLinkApiGetHstryYnEnum];
+export type AddrLinkApiGetHstryYnEnum =
+    'Y'|
+    'N'
 /**
- * @export
+ * 정렬 (\* 2020년12월8일 추가된 항목)
+ * 
+ * - 정확도순 정렬
+ *   * `none` - Ascending, from A to Z
+ * - 우선정렬: keyword(검색어)가 우선정렬 항목에 포함된 결과 우선 표출 
+ *   * `road` - 도로명 포함
+ *   * `location` - 지번 포함
  */
-export const AddrLinkApiGetFirstSortEnum = {
-    None: 'none',
-    Road: 'road',
-    Location: 'location'
-} as const;
-export type AddrLinkApiGetFirstSortEnum = typeof AddrLinkApiGetFirstSortEnum[keyof typeof AddrLinkApiGetFirstSortEnum];
+export type AddrLinkApiGetFirstSortEnum =
+    'none'|
+    'road'|
+    'location'
 /**
- * @export
+ * 출력결과에 추가된 항목(hstryYn, relJibun, hemdNm) 제공여부
+ * 
+ * (\* 2020년12월8일 추가된 항목)
+ * 
+ * (※ 해당 옵션으로 추가제공되는 항목의 경우, 추후 특정항목이 제거되거나 추가될 수 있으니 적용 시 고려해주시기 바랍니다.)
  */
-export const AddrLinkApiGetAddInfoYnEnum = {
-    Y: 'Y',
-    N: 'N'
-} as const;
-export type AddrLinkApiGetAddInfoYnEnum = typeof AddrLinkApiGetAddInfoYnEnum[keyof typeof AddrLinkApiGetAddInfoYnEnum];
+export type AddrLinkApiGetAddInfoYnEnum =
+    'Y'|
+    'N'
 /**
- * @export
+ * 검색결과형식 설정
  */
-export const AddrLinkApiPostResultTypeEnum = {
-    Xml: 'xml',
-    Json: 'json'
-} as const;
-export type AddrLinkApiPostResultTypeEnum = typeof AddrLinkApiPostResultTypeEnum[keyof typeof AddrLinkApiPostResultTypeEnum];
+export type AddrLinkApiPostResultTypeEnum =
+    'xml'|
+    'json'
 /**
- * @export
+ * 변동된 주소정보 포함 여부 (\* 2020년12월8일 추가된 항목)
  */
-export const AddrLinkApiPostHstryYnEnum = {
-    Y: 'Y',
-    N: 'N'
-} as const;
-export type AddrLinkApiPostHstryYnEnum = typeof AddrLinkApiPostHstryYnEnum[keyof typeof AddrLinkApiPostHstryYnEnum];
+export type AddrLinkApiPostHstryYnEnum =
+    'Y'|
+    'N'
 /**
- * @export
+ * 정렬 (\* 2020년12월8일 추가된 항목)
+ * 
+ * - 정확도순 정렬
+ *   * `none` - Ascending, from A to Z
+ * - 우선정렬: keyword(검색어)가 우선정렬 항목에 포함된 결과 우선 표출 
+ *   * `road` - 도로명 포함
+ *   * `location` - 지번 포함
  */
-export const AddrLinkApiPostFirstSortEnum = {
-    None: 'none',
-    Road: 'road',
-    Location: 'location'
-} as const;
-export type AddrLinkApiPostFirstSortEnum = typeof AddrLinkApiPostFirstSortEnum[keyof typeof AddrLinkApiPostFirstSortEnum];
+export type AddrLinkApiPostFirstSortEnum =
+    'none'|
+    'road'|
+    'location'
 /**
- * @export
+ * 출력결과에 추가된 항목(hstryYn, relJibun, hemdNm) 제공여부
+ * 
+ * (\* 2020년12월8일 추가된 항목)
+ * 
+ * (※ 해당 옵션으로 추가제공되는 항목의 경우, 추후 특정항목이 제거되거나 추가될 수 있으니 적용 시 고려해주시기 바랍니다.)
  */
-export const AddrLinkApiPostAddInfoYnEnum = {
-    Y: 'Y',
-    N: 'N'
-} as const;
-export type AddrLinkApiPostAddInfoYnEnum = typeof AddrLinkApiPostAddInfoYnEnum[keyof typeof AddrLinkApiPostAddInfoYnEnum];
+export type AddrLinkApiPostAddInfoYnEnum =
+    'Y'|
+    'N'

@@ -366,29 +366,25 @@ export class {{classname}} extends runtime.BaseAPI {
 {{#isEnum}}
 {{#stringEnums}}
 /**
-  * @export
-  * @enum {string}
-  */
-export enum {{operationIdCamelCase}}{{enumName}} {
+ * {{#lambda.indented_star_1}}{{{unescapedDescription}}}{{/lambda.indented_star_1}}
+ */
+export type {{operationIdCamelCase}}{{enumName}} =
 {{#allowableValues}}
     {{#enumVars}}
-    {{{name}}} = {{{value}}}{{^-last}},{{/-last}}
+    {{{name}}} = {{{value}}}{{^-last}}|{{/-last}}
     {{/enumVars}}
 {{/allowableValues}}
-}
 {{/stringEnums}}
 {{^stringEnums}}
 /**
- * @export
+ * {{#lambda.indented_star_1}}{{{unescapedDescription}}}{{/lambda.indented_star_1}}
  */
-export const {{operationIdCamelCase}}{{enumName}} = {
+export type {{operationIdCamelCase}}{{enumName}} =
 {{#allowableValues}}
     {{#enumVars}}
-    {{{name}}}: {{{value}}}{{^-last}},{{/-last}}
+    {{{value}}}{{^-last}}|{{/-last}}
     {{/enumVars}}
 {{/allowableValues}}
-} as const;
-export type {{operationIdCamelCase}}{{enumName}} = typeof {{operationIdCamelCase}}{{enumName}}[keyof typeof {{operationIdCamelCase}}{{enumName}}];
 {{/stringEnums}}
 {{/isEnum}}
 {{/allParams}}

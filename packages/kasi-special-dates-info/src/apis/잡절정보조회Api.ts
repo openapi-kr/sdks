@@ -18,12 +18,6 @@ import type {
   Response,
   ResponseXML,
 } from '../models';
-import {
-    ResponseFromJSON,
-    ResponseToJSON,
-    ResponseXMLFromJSON,
-    ResponseXMLToJSON,
-} from '../models';
 
 export interface GetSundryDayInfoRequest {
     /**
@@ -101,7 +95,7 @@ export class 잡절정보조회Api extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -116,10 +110,8 @@ export class 잡절정보조회Api extends runtime.BaseAPI {
 }
 
 /**
- * @export
+ * 응답데이터형식 설정
  */
-export const GetSundryDayInfoTypeEnum = {
-    Json: 'json',
-    Xml: 'xml'
-} as const;
-export type GetSundryDayInfoTypeEnum = typeof GetSundryDayInfoTypeEnum[keyof typeof GetSundryDayInfoTypeEnum];
+export type GetSundryDayInfoTypeEnum =
+    'json'|
+    'xml'

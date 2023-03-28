@@ -18,12 +18,6 @@ import type {
   AddrCoordResponse,
   AddrCoordResults,
 } from '../models';
-import {
-    AddrCoordResponseFromJSON,
-    AddrCoordResponseToJSON,
-    AddrCoordResultsFromJSON,
-    AddrCoordResultsToJSON,
-} from '../models';
 
 export interface AddrCoordApiGetRequest {
     /**
@@ -132,7 +126,7 @@ export class CoordApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AddrCoordResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -200,7 +194,7 @@ export class CoordApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AddrCoordResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
 
     /**
@@ -215,18 +209,14 @@ export class CoordApi extends runtime.BaseAPI {
 }
 
 /**
- * @export
+ * 검색결과형식 설정
  */
-export const AddrCoordApiGetResultTypeEnum = {
-    Xml: 'xml',
-    Json: 'json'
-} as const;
-export type AddrCoordApiGetResultTypeEnum = typeof AddrCoordApiGetResultTypeEnum[keyof typeof AddrCoordApiGetResultTypeEnum];
+export type AddrCoordApiGetResultTypeEnum =
+    'xml'|
+    'json'
 /**
- * @export
+ * 검색결과형식 설정
  */
-export const AddrCoordApiPostResultTypeEnum = {
-    Xml: 'xml',
-    Json: 'json'
-} as const;
-export type AddrCoordApiPostResultTypeEnum = typeof AddrCoordApiPostResultTypeEnum[keyof typeof AddrCoordApiPostResultTypeEnum];
+export type AddrCoordApiPostResultTypeEnum =
+    'xml'|
+    'json'
